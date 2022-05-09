@@ -15,7 +15,7 @@ import {
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: 'http://localhost:1500/graphql'
+    uri: 'https://back-end-nodejs-production.up.railway.app/graphql'
   })
 })
 
