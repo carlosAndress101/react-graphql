@@ -14,14 +14,14 @@ mutation CreateOrder($order: CreateOrder) {
 const formOrder = () => {
 
   try {
-    const [NumberOfClient, setNumeroCliente] = useState('')
+    const [NumberOfClient, setNumeroCliente] = useState()
     const [dataOfOrder, setInfOrden] = useState('')
 
     const [createOrder] = useMutation(CREATE_ORDER)
 
     const handleSubmit = e => {
       e.preventDefault()
-      createOrder({ variables: { order: { NumberOfClient, dataOfOrder } } })
+      createOrder({ variables: { order: { NumberOfClient:NumberOfClient, dataOfOrder:dataOfOrder } } })
 
       setNumeroCliente('')
       setInfOrden('')
@@ -30,8 +30,8 @@ const formOrder = () => {
       <div>
         <h1>ordenes</h1>
         <form onSubmit={handleSubmit}>
-          <input placeholder="numero del cliente" value={NumberOfClient} onChange={(evt) => setNumeroCliente(evt.target.value)} />
-          <input placeholder="descripcion de orden" value={dataOfOrder} onChange={(evt) => setInfOrden(evt.target.value)} />
+          <input type="number" placeholder="numero del cliente" value={NumberOfClient} onChange={(evt) => setNumeroCliente(evt.target.value)} />
+          <input type="text" placeholder="descripcion de orden" value={dataOfOrder} onChange={(evt) => setInfOrden(evt.target.value)} />
           <button>crear orden</button>
         </form>
       </div>
