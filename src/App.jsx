@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { gql, useQuery } from '@apollo/client';
-
+import Customer from './components/customer';
+import CustomerForm from './components/cCustomer'
+import CreateOrder from './components/createOrders';
 /**Peticion graphql*/
-const findCustomer = gql`
+const customers = gql`
 query {
     customers {
       _id
@@ -16,15 +18,19 @@ query {
   }
 `
 function App() {
-  const { data, error, loading } = useQuery(findCustomer)
+  const { data, error, loading } = useQuery(customers)
 
-  if (error) return <samp style='color: red'>{error}</samp>
+  if (error) return <spam style='color: red'>{error}</spam>
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Graphql + React!</p>
+        {
+          loading? <p>Loading...</p>
+          :<Customer custom={data?.customers}/>
+        }
+        <CreateOrder/>
       </header>
     </div>
   )
