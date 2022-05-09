@@ -24,13 +24,13 @@ function App() {
 
   return (
     <div className="App">
+      <CreateOrder />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {
-          loading? <p>Loading...</p>
-          :<Customer custom={data?.customers}/>
+          loading ? <p>Loading...</p>
+            : <Customer custom={data?.customers} />
         }
-        <CreateOrder/>
       </header>
     </div>
   )
